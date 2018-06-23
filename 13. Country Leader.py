@@ -1,27 +1,27 @@
 #Kickstart Practice Round 2017
 
+f = open('C:/Users/mohit/Desktop/output_file.txt', 'a')
 for case in range(int(input())):
     n = int(input())
     names = []
-    f = open('C:/Users/mohit/Desktop/output_file.txt', 'a')
-    for idx in range(n):
-        names.append(input())
     max = float('-inf')
     leader = ''
-    indexes = []
-    for i, name in enumerate(names):
-        length = len(set(name.replace(' ','')))
+    count = 0
+    for idx in range(n):
+        name = input()
+        length = len(set(name.replace(' ', '')))
         if max < length:
-            indexes = [i]
+            count = 1
             max = length
+            leader = name
+            names = [name]
         elif max == length:
-            indexes.append(i)
-            max = length
-    leader = names[indexes[0]]
-    if len(indexes)>1:
-        for idx in indexes:
-            if leader > names[idx]:
-                leader = names[idx]
+            count +=1
+            names.append(name)
+    if count>1:
+        for name in names:
+            if leader > name:
+                leader = name
     print(leader)
     f.write('Case #{}: {}\n'.format(case + 1, leader))
 
