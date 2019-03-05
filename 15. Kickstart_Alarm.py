@@ -23,13 +23,18 @@ def generate_A(A, n, x, y, c, d, e1, e2, f, i):
 
 
 cases = int(input()) + 1
-
-for case in range(1, cases, 1):
+file = open('Output/kickstart_small.txt', 'w')
+for case in range(1, cases):
     n, k, x, y, c, d, e1, e2, f = map(int, input().split())
     A = [(x + y) % f]
-    A = generate_A(A, n, x, y, x, d, e1, e2, f, 1)
+    print(A)
+    A = generate_A(A, n, x, y, c, d, e1, e2, f, 1)
+    print(A)
     # A = generate_A(n, x, y, c, d, e1, e2, f)
     power = sum([exp_power(cont, i) for i in range(1, k + 1, 1)
                  for cont in get_continguous_array(A)])
+    print(power)
+    # print(f'Case #{case}: {power}')
+    file.write(f'Case #{case}: {power}\n')
 
-    print(f'Case #{case}: {power}')
+file.close()
